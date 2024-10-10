@@ -30,6 +30,14 @@ resource "aws_vpc_security_group_ingress_rule" "demo-sg-ingress" {
   ip_protocol       = "tcp"
   to_port           = 22
 }
+resource "aws_vpc_security_group_ingress_rule" "demo-sg-ingress-jenkins" {
+  security_group_id = aws_security_group.demo-sg.id
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = 8080
+  ip_protocol       = "tcp"
+  to_port           = 8080
+}
+
 resource "aws_vpc_security_group_egress_rule" "demo-sg-egress" {
   security_group_id = aws_security_group.demo-sg.id
   cidr_ipv4   = "0.0.0.0/0"
